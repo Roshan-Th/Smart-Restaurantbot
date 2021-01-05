@@ -1,0 +1,355 @@
+TEXT-TO-SPEECH
+[
+    {
+        "id": "5b54854f.973e2c",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "22fe91d3.65e12e",
+        "type": "watson-text-to-speech",
+        "z": "5b54854f.973e2c",
+        "name": "",
+        "lang": "en-GB",
+        "langhidden": "en-GB",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "en-GB_CharlotteV3Voice",
+        "voicehidden": "",
+        "format": "audio/wav",
+        "password": "",
+        "apikey": "pochYWXwzZKzIVOYbxFz7vNIdbO0b1g8eu0f_v0Z7O6s",
+        "payload-response": false,
+        "service-endpoint": "https://api.us-south.text-to-speech.watson.cloud.ibm.com/instances/76571061-98c0-4df8-bc65-b2e88bbf9767",
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "dcd46106.cf7e6",
+                "f7a99b4b.709b18"
+            ]
+        ]
+    },
+    {
+        "id": "dcd46106.cf7e6",
+        "type": "play audio",
+        "z": "5b54854f.973e2c",
+        "name": "",
+        "voice": "",
+        "x": 650,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "553283f0.b9348c",
+        "type": "ui_form",
+        "z": "5b54854f.973e2c",
+        "name": "",
+        "label": "",
+        "group": "68c7fb7d.730714",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Enter the text",
+                "value": "t",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "t": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "3ad1036e.9f595c"
+            ]
+        ]
+    },
+    {
+        "id": "48c6b28e.3e9b2c",
+        "type": "debug",
+        "z": "5b54854f.973e2c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "3ad1036e.9f595c",
+        "type": "function",
+        "z": "5b54854f.973e2c",
+        "name": "Parse",
+        "func": "msg.payload=msg.payload.t\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "48c6b28e.3e9b2c",
+                "22fe91d3.65e12e"
+            ]
+        ]
+    },
+    {
+        "id": "f7a99b4b.709b18",
+        "type": "watson-conversation-v1",
+        "z": "5b54854f.973e2c",
+        "name": "",
+        "workspaceid": "542bf17f-09c6-46d6-8b0c-a964958df910",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "service-endpoint": "https://api.us-south.assistant.watson.cloud.ibm.com/instances/5d0de2d5-6045-4d7c-95b9-254cb68bc81d",
+        "timeout": "",
+        "optout-learning": false,
+        "x": 600,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68c7fb7d.730714",
+        "type": "ui_group",
+        "z": "",
+        "name": "Text to Speech",
+        "tab": "cb2643a6.e603d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "cb2643a6.e603d",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Enter text",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
+
+SPEECH-TO-TEXT
+[
+    {
+        "id": "bdb9232c.76a8",
+        "type": "watson-speech-to-text",
+        "z": "6a8e84dc.f96f4c",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": true,
+        "smartformatting": false,
+        "lang": "",
+        "langhidden": "",
+        "langcustom": "",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "",
+        "bandhidden": "",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "",
+        "payload-response": false,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "",
+        "x": 320,
+        "y": 180,
+        "wires": [
+            [
+                "6554092e.91c548"
+            ]
+        ]
+    }
+]
+
+CLOUDANT-DB
+[
+    {
+        "id": "d28a2ff8.90828",
+        "type": "tab",
+        "label": "Cloudant",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b1046757.519648",
+        "type": "ui_form",
+        "z": "d28a2ff8.90828",
+        "name": "",
+        "label": "",
+        "group": "eb4828f6.f71b78",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Enter name",
+                "value": "name",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter email",
+                "value": "email",
+                "type": "email",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter password",
+                "value": "password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter Phoneno",
+                "value": "phoneno",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Enter query",
+                "value": "query",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "name": "",
+            "email": "",
+            "password": "",
+            "phoneno": "",
+            "query": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "2649960e.a4457a",
+                "ba6cd1.d972f33"
+            ]
+        ]
+    },
+    {
+        "id": "d26ae50a.57fe88",
+        "type": "cloudant out",
+        "z": "d28a2ff8.90828",
+        "name": "",
+        "cloudant": "",
+        "database": "customer_details",
+        "service": "node-red-zfehs-2020--cloudant-1608276037343-72822",
+        "payonly": true,
+        "operation": "insert",
+        "x": 590,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2649960e.a4457a",
+        "type": "function",
+        "z": "d28a2ff8.90828",
+        "name": "",
+        "func": "msg.payload = {\n    _id:msg.payload.email,\n    Name:msg.payload.name,\n    Email:msg.payload.email,\n    Password:msg.payload.password,\n    PhoneNo:msg.payload.phoneno,\n    Query:msg.payload.query\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "d26ae50a.57fe88"
+            ]
+        ]
+    },
+    {
+        "id": "ba6cd1.d972f33",
+        "type": "function",
+        "z": "d28a2ff8.90828",
+        "name": "",
+        "func": "msg.payload=\"Thankyou \"+msg.payload.name+\" for your feedback.\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "22437fcf.80d4b"
+            ]
+        ]
+    },
+    {
+        "id": "22437fcf.80d4b",
+        "type": "ui_text",
+        "z": "d28a2ff8.90828",
+        "group": "eb4828f6.f71b78",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 550,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "eb4828f6.f71b78",
+        "type": "ui_group",
+        "z": "",
+        "name": "Customer details",
+        "tab": "755836b2.1d8f78",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "755836b2.1d8f78",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Feedback",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
